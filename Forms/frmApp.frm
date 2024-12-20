@@ -38,3 +38,18 @@ Private Sub smNuevo_Click()
     Set frmDetalle = New frmDetalle ' Nueva instancia de Detalle
     frmDetalle.Show
 End Sub
+
+' Conexion de base de datos DB Connection
+Public Sub ConnectToDb()
+    Set conn = New ADODB.Connection
+    conn.ConnectionString = "Provider=SQLOLEDB; Data Source=.; Initial Catalog=Visionboarddb; Trusted_Connection=Yes;"
+    conn.Open
+End Sub
+
+Public Sub DisconnectToDb()
+    If Not conn Is Nothing Then
+        conn.Close
+        Set conn = Nothing
+    End If
+End Sub
+

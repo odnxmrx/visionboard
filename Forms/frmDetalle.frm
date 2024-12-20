@@ -136,7 +136,7 @@ Begin VB.Form frmDetalle
    Begin VB.Label lblTituloDetalle 
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
-      Caption         =   "Crear Nueva Meta"
+      Caption         =   "Detalle de Meta"
       BeginProperty Font 
          Name            =   "Roboto Medium"
          Size            =   15.75
@@ -159,6 +159,11 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub cmdBtnGuardarMeta_Click()
+    Call ConnectToDb
+
+End Sub
+
 Private Sub cmdBtnImagen_Click()
 
     On Error GoTo ERR_HANDLER
@@ -172,7 +177,13 @@ Private Sub cmdBtnImagen_Click()
     End With
     
     If rutaImagen <> "" Then
-        CargarImagen rutaImagen
+        Dim objLoader As classImageLoader
+        Set objLoader = New classImageLoader
+        
+        'CargarImagen rutaImagen
+        Dim myImage As StdPicture
+        Set myImage = objLoader.CargarImagen(rutaImagen, picMetaImage)
+        
     End If
     
     Exit Sub
@@ -183,47 +194,7 @@ ERR_HANDLER:
     
 End Sub
 
-'Sub rutina que hace la carga de la imagen
-Private Sub CargarImagen(ByVal ruta As String)
-    On Error Resume Next ' Handle runtime errors gracefully
 
-    Dim originalWidth As Single
-    Dim originalHeight As Single
-    Dim scaleX As Single
-    Dim scaleY As Single
-    Dim targetWidth As Single
-    Dim targetHeight As Single
-    Dim xOffset As Single
-    Dim yOffset As Single
-
-    ' Load the picture
-    picMetaImage.Picture = LoadPicture(ruta)
-
-    ' Get the original image dimensions
-    originalWidth = picMetaImage.Picture.Width / Screen.TwipsPerPixelX
-    originalHeight = picMetaImage.Picture.Height / Screen.TwipsPerPixelY
-
-    ' Calculate scale factors for resizing
-    scaleX = picMetaImage.ScaleWidth / originalWidth
-    scaleY = picMetaImage.ScaleHeight / originalHeight
-
-    ' Use the smaller scale factor to fit the image inside the PictureBox
-    If scaleX < scaleY Then
-        targetWidth = originalWidth * scaleX
-        targetHeight = originalHeight * scaleX
-    Else
-        targetWidth = originalWidth * scaleY
-        targetHeight = originalHeight * scaleY
-    End If
-
-    ' Center the image inside the PictureBox
-    xOffset = (picMetaImage.ScaleWidth - targetWidth) / 2
-    yOffset = (picMetaImage.ScaleHeight - targetHeight) / 2
-
-    ' Clear the PictureBox and draw the resized image
-    picMetaImage.Cls
-    picMetaImage.PaintPicture picMetaImage.Picture, xOffset, yOffset, targetWidth, targetHeight
-End Sub
 
 
 
@@ -244,3 +215,4 @@ Private Sub Form_Load()
     cmbFechaTentativaMeta.AddItem "Diciembre"
 
 End Sub
+
