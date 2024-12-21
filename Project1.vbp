@@ -1,12 +1,14 @@
 Type=Exe
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Module=modDeclaraciones; Modules\modDeclaraciones.bas
-Form=Forms\frmApp.frm
-Form=Forms\frmDetalle.frm
+Reference=*\G{00000201-0000-0010-8000-00AA006D2EA4}#2.1#0#..\..\..\..\..\..\..\Program Files (x86)\Common Files\System\ado\msado21.tlb#Microsoft ActiveX Data Objects 2.1 Library
 Object={831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0; MSCOMCTL.OCX
 Object={F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0; COMDLG32.OCX
 Object={67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0; MSADODC.OCX
+Module=modDeclaraciones; Modules\modDeclaraciones.bas
+Form=Forms\frmApp.frm
+Form=Forms\frmDetalle.frm
 Class=classImageLoader; Classes\classImageLoader.cls
+Class=classDatabaseHandler; Classes\classDatabaseHandler.cls
 Startup="frmApp"
 HelpFile=""
 Command32=""

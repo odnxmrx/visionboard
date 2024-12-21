@@ -159,8 +159,38 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Public conn As ADODB.connection
+
 Private Sub cmdBtnGuardarMeta_Click()
+
+    Dim rs As ADODB.Recordset
+    Set rs = New ADODB.Recordset
+    
     Call ConnectToDb
+    
+        ' Ensure conn is initialized before checking its state
+    If Not conn Is Nothing Then
+        If conn.State = adStateOpen Then
+            On Error GoTo ErrorHandler
+            rs.Open "SELECT * FROM Goals", conn, adOpenStatic, adLockReadOnly
+        
+            
+            Call DisconnectToDb ' Close my conn
+            Exit Sub
+        End If
+    Else
+        MsgBox "Connection object not initialized.", vbCritical
+    End If
+
+ErrorHandler:
+    MsgBox "Error: " & Err.Description, vbCritical
+    Exit Sub
+    
+    'If ConnectDb = True Then
+    '    Debug.Print "HOLAAA"
+    'Else
+    '    MsgBox "Error en DB: " & Err.Description, vbCritical, "Error"
+    'End If
 
 End Sub
 
@@ -195,9 +225,6 @@ ERR_HANDLER:
 End Sub
 
 
-
-
-
 Private Sub Form_Load()
     
     ' agregando elementos a combobox de fecha tentativa de alcanzar meta
@@ -214,5 +241,19 @@ Private Sub Form_Load()
     cmbFechaTentativaMeta.AddItem "Noviembre"
     cmbFechaTentativaMeta.AddItem "Diciembre"
 
+End Sub
+
+' Conexion de base de datos DB Connection
+Public Sub ConnectToDb()
+    Set conn = New ADODB.connection
+    conn.ConnectionString = "Provider=SQLOLEDB; Data Source=.; Initial Catalog=Visionboarddb; Trusted_Connection=Yes;"
+    conn.Open
+End Sub
+
+Public Sub DisconnectToDb()
+    If Not conn Is Nothing Then
+        conn.Close
+        Set conn = Nothing
+    End If
 End Sub
 

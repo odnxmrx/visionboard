@@ -30,6 +30,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Public conn As ADODB.connection
+
 Private Sub mSalir_Click()
     Unload Me
 End Sub
@@ -41,7 +43,7 @@ End Sub
 
 ' Conexion de base de datos DB Connection
 Public Sub ConnectToDb()
-    Set conn = New ADODB.Connection
+    Set conn = New ADODB.connection
     conn.ConnectionString = "Provider=SQLOLEDB; Data Source=.; Initial Catalog=Visionboarddb; Trusted_Connection=Yes;"
     conn.Open
 End Sub
