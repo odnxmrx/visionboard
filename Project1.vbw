@@ -1,5 +1,5 @@
 modDeclaraciones = 52, 52, 808, 674, C
-frmApp = 71, 192, 1198, 782, , 36, 47, 1043, 735, C
-frmDetalle = 403, 38, 1167, 951, , 53, 97, 1255, 884, C
+frmApp = 71, 192, 1187, 779, C, 36, 47, 1043, 735, C
+frmDetalle = 91, 78, 1388, 938, , 53, 97, 1255, 884, C
 classImageLoader = 13, 162, 759, 939, C
-classDatabaseHandler = 250, 258, 1491, 863, 
+classDatabaseHandler = 250, 258, 1491, 863, C

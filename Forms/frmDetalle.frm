@@ -160,6 +160,11 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public conn As ADODB.connection
+' declare values
+Dim titulo As String
+Dim descripcion As String
+Dim fechaCom As String
+Dim urlImagen As String
 
 Private Sub cmdBtnGuardarMeta_Click()
 
@@ -171,9 +176,28 @@ Private Sub cmdBtnGuardarMeta_Click()
         ' Ensure conn is initialized before checking its state
     If Not conn Is Nothing Then
         If conn.State = adStateOpen Then
-            On Error GoTo ErrorHandler
-            rs.Open "SELECT * FROM Goals", conn, adOpenStatic, adLockReadOnly
         
+            titulo = txtTituloMeta.Text
+            descripcion = txtDescripcionMeta.Text
+            fechaCom = cmbFechaTentativaMeta.ListIndex ' TENTATIVOOOO
+            'urlImagen = ' es que es rutaImagen global
+            
+            On Error GoTo ErrorHandler
+            'rs.Open "SELECT * FROM Goals", conn, adOpenStatic, adLockReadOnly
+
+            ' Create the INSERT statement with proper concatenation
+            Dim sql As String
+            
+            sql = "INSERT INTO Goals (title, description, completionMonth, imageUrl) VALUES (" & _
+                  "'" & Replace(titulo, "'", "''") & "', " & _
+                  "'" & Replace(descripcion, "'", "''") & "', " & _
+                  fechaCom & ", " & _
+                  "'" & Replace(rutaImagen, "'", "''") & "')"
+            
+            ' Execute the SQL query
+            conn.Execute sql
+            
+            MsgBox "Meta guardada correctamente.", vbInformation
             
             Call DisconnectToDb ' Close my conn
             Exit Sub
@@ -183,7 +207,7 @@ Private Sub cmdBtnGuardarMeta_Click()
     End If
 
 ErrorHandler:
-    MsgBox "Error: " & Err.Description, vbCritical
+    MsgBox "Errorrrrr: " & Err.description, vbCritical
     Exit Sub
     
     'If ConnectDb = True Then
@@ -219,8 +243,8 @@ Private Sub cmdBtnImagen_Click()
     Exit Sub
     
 ERR_HANDLER:
-        Debug.Print "Ocurrió error. " & Err.Description
-        MsgBox "Error en carga de imagen: " & Err.Description, vbCritical, "Error"
+        Debug.Print "Ocurrió error. " & Err.description
+        MsgBox "Error en carga de imagen: " & Err.description, vbCritical, "Error"
     
 End Sub
 
