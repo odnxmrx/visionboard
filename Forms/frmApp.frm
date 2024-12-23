@@ -36,6 +36,17 @@ Private Sub mSalir_Click()
     Unload Me
 End Sub
 
+Private Sub smAcercaDe_Click()
+    MsgBox "Visionboard project" & vbCrLf & _
+    "" & vbCrLf & _
+    "Developed on Visual Basic 6," & vbCrLf & _
+    "Microsoft SQL Server" & vbCrLf & _
+    "" & vbCrLf & _
+    "Desarrollado por " & vbCrLf & _
+    "© Armando Pineda Gama" & vbCrLf & _
+    "Diciembre, 2024.", vbOKOnly, "Acerca de"
+End Sub
+
 Private Sub smNuevo_Click()
     Set frmDetalle = New frmDetalle ' Nueva instancia de Detalle
     frmDetalle.Show

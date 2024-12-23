@@ -14,6 +14,15 @@ Begin VB.Form frmDetalle
    ScaleHeight     =   9105
    ScaleWidth      =   14640
    WindowState     =   2  'Maximized
+   Begin VB.CommandButton cmdBtnSalir 
+      Appearance      =   0  'Flat
+      Caption         =   "Salir"
+      Height          =   375
+      Left            =   10560
+      TabIndex        =   12
+      Top             =   7200
+      Width           =   1455
+   End
    Begin MSComDlg.CommonDialog commonDialogInsertarImagen 
       Left            =   840
       Top             =   7080
@@ -198,6 +207,7 @@ Private Sub cmdBtnGuardarMeta_Click()
             conn.Execute sql
             
             MsgBox "Meta guardada correctamente.", vbInformation
+            Call limpiarFormulario
             
             Call DisconnectToDb ' Close my conn
             Exit Sub
@@ -207,7 +217,7 @@ Private Sub cmdBtnGuardarMeta_Click()
     End If
 
 ErrorHandler:
-    MsgBox "Errorrrrr: " & Err.description, vbCritical
+    MsgBox "Errorrrrr: " & Err.Description, vbCritical
     Exit Sub
     
     'If ConnectDb = True Then
@@ -243,11 +253,25 @@ Private Sub cmdBtnImagen_Click()
     Exit Sub
     
 ERR_HANDLER:
-        Debug.Print "Ocurrió error. " & Err.description
-        MsgBox "Error en carga de imagen: " & Err.description, vbCritical, "Error"
+        Debug.Print "Ocurrió error. " & Err.Description
+        MsgBox "Error en carga de imagen: " & Err.Description, vbCritical, "Error"
     
 End Sub
 
+
+Private Sub limpiarFormulario()
+    txtTituloMeta.Text = ""
+            txtDescripcionMeta.Text = ""
+             cmbFechaTentativaMeta.ListIndex = 0
+             'picMetaImage.Cls ' Call crear method
+             Set picMetaImage.Picture = Nothing
+             
+End Sub
+
+
+Private Sub cmdBtnSalir_Click()
+    Unload Me
+End Sub
 
 Private Sub Form_Load()
     
@@ -264,6 +288,7 @@ Private Sub Form_Load()
     cmbFechaTentativaMeta.AddItem "Octubre"
     cmbFechaTentativaMeta.AddItem "Noviembre"
     cmbFechaTentativaMeta.AddItem "Diciembre"
+    cmbFechaTentativaMeta.ListIndex = 0
 
 End Sub
 
