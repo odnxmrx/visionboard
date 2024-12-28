@@ -24,11 +24,11 @@ Or run the `.exe` file to execute the stand-alone project.
 
 ## Screenshots
 
-![alt text](./public/image1.jpg)
-![alt text](./public/image2.jpg)
-![alt text](./public/image3.jpg)
-![alt text](./public/image4.jpg)
-![alt text](./public/image5.jpg)
+![alt text](public/image1.jpg)
+![alt text](public/image2.jpg)
+![alt text](public/image3.jpg)
+![alt text](public/image4.jpg)
+![alt text](public/image5.jpg)
 
 ## Feedback
 
