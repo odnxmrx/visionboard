@@ -24,11 +24,12 @@ Or run the `.exe` file to execute the stand-alone project.
 
 ## Screenshots
 
-![alt text](public/image1.jpg)
-![alt text](public/image2.jpg)
-![alt text](public/image3.jpg)
-![alt text](public/image4.jpg)
-![alt text](public/image5.jpg)
+![image1](https://github.com/user-attachments/assets/2208b7e2-4105-4646-9e74-7cfb44fa26d6)
+![image2](https://github.com/user-attachments/assets/61279967-f42a-4b7b-bc55-83e4427a42f6)
+![image3](https://github.com/user-attachments/assets/3dd898ea-8b59-4d4b-9e05-001fb956faa5)
+![image4](https://github.com/user-attachments/assets/01e9f437-b942-4d6f-9b5f-a58d5a921b1b)
+![image5](https://github.com/user-attachments/assets/94732256-596c-4e7e-9309-9bb1f58a424c)
+
 
 ## Feedback
 
