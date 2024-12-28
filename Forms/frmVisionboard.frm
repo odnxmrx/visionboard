@@ -44,12 +44,14 @@ Dim imgData() As Byte
 Dim randomIndex As Integer
 Dim query As String
 Dim totalImagenes As Integer
+Private picBoxArray() As clsPictureBoxEvent ' Arreglo para manejar eventos
 
 Private Sub cmdBtnSalir_Click()
     Unload Me
 End Sub
 
-Private Sub cmdCargarVisionboard_Click()
+
+Public Sub cmdCargarVisionboard_Click()
     ' Crear la conexión a SQL Server
     Set conn = New ADODB.connection
     conn.ConnectionString = "Provider=SQLOLEDB; Data Source=.; Initial Catalog=Visionboarddb; Trusted_Connection=Yes;"
@@ -74,28 +76,21 @@ Private Sub cmdCargarVisionboard_Click()
     imgHeight = 3000 ' Alto del PictureBox
     spacing = 50 ' Espaciado entre PictureBox
 
+    ' Redimensionar el arreglo de clases
+    ReDim picBoxArray(1 To totalImagenes)
+
     ' Iterar para crear y cargar imágenes en los PictureBox
     For i = 1 To totalImagenes
-        ' Obtener la ruta de cada imagen y los datos asociados
-        query = "SELECT IdGoal, title, description, completionMonth, imageUrl FROM Goals WHERE IdGoal = " & i
+        ' Obtener datos de la meta
+        query = "SELECT IdGoal, title, imageUrl FROM Goals WHERE IdGoal = " & i
         Set rs = conn.Execute(query)
 
-        Dim imgPath As String
-        Dim goalId As Integer
-        Dim title As String
-        Dim description As String
-        Dim completionMonth As String
+        ' Crear dinámicamente un PictureBox
+        Dim newPicBox As PictureBox
+        Set newPicBox = Me.Controls.Add("VB.PictureBox", "picBox" & i)
 
-        goalId = rs.Fields("IdGoal").Value
-        title = rs.Fields("title").Value
-        description = rs.Fields("description").Value
-        completionMonth = rs.Fields("completionMonth").Value
-        imgPath = rs.Fields("imageUrl").Value
-
-        ' Crear el PictureBox dinámicamente
-        Dim picBox As PictureBox
-        Set picBox = Me.Controls.Add("VB.PictureBox", "picBox" & i)
-        With picBox
+        ' Configurar el PictureBox
+        With newPicBox
             .Width = imgWidth
             .Height = imgHeight
             .Left = imgLeft
@@ -104,23 +99,20 @@ Private Sub cmdCargarVisionboard_Click()
             .AutoSize = False
             .Appearance = 0
             .BorderStyle = vbFixedSingle
-
-            ' Almacenar datos como propiedades del PictureBox
-            .Tag = goalId & "|" & title & "|" & description & "|" & completionMonth & "|" & imgPath
-
-            ' Verificar si la ruta de la imagen es válida antes de cargarla
-            If Len(Dir(imgPath)) > 0 Then
-                Dim objLoader As classImageLoader
-                Set objLoader = New classImageLoader
-                objLoader.CargarImagen imgPath, picBox
-                Set objLoader = Nothing
-            Else
-                MsgBox "La ruta de la imagen no es válida: " & imgPath, vbExclamation, "Error de Carga"
-            End If
+            .Tag = rs.Fields("title").Value ' Guardar ID en el Tag
         End With
 
-        ' Asignar evento Click dinámico al PictureBox
-        'picBox.OnClick = "[EventProcedure]"
+        ' Vincular el PictureBox a la clase para manejar el evento DblClick
+        Set picBoxArray(i) = New clsPictureBoxEvent
+        Set picBoxArray(i).picBox = newPicBox
+
+        ' Cargar la imagen si la ruta es válida
+        If Len(Dir(rs.Fields("imageUrl").Value)) > 0 Then
+            Dim objLoader As classImageLoader
+            Set objLoader = New classImageLoader
+            objLoader.CargarImagen rs.Fields("imageUrl").Value, newPicBox
+            Set objLoader = Nothing
+        End If
 
         ' Actualizar posición para el siguiente PictureBox
         imgLeft = imgLeft + imgWidth + spacing

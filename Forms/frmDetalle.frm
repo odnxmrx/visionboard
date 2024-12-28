@@ -72,6 +72,7 @@ Begin VB.Form frmDetalle
          Width           =   1695
       End
       Begin VB.ComboBox cmbFechaTentativaMeta 
+         Appearance      =   0  'Flat
          Height          =   330
          ItemData        =   "frmDetalle.frx":0000
          Left            =   360
@@ -217,7 +218,7 @@ Private Sub cmdBtnGuardarMeta_Click()
     End If
 
 ErrorHandler:
-    MsgBox "Errorrrrr: " & Err.Description, vbCritical
+    MsgBox "Errorrrrr: " & Err.description, vbCritical
     Exit Sub
     
     'If ConnectDb = True Then
@@ -253,8 +254,8 @@ Private Sub cmdBtnImagen_Click()
     Exit Sub
     
 ERR_HANDLER:
-        Debug.Print "Ocurrió error. " & Err.Description
-        MsgBox "Error en carga de imagen: " & Err.Description, vbCritical, "Error"
+        Debug.Print "Ocurrió error. " & Err.description
+        MsgBox "Error en carga de imagen: " & Err.description, vbCritical, "Error"
     
 End Sub
 
@@ -269,9 +270,10 @@ Private Sub limpiarFormulario()
 End Sub
 
 
-Private Sub cmdBtnSalir_Click()
+Public Sub cmdBtnSalir_Click()
     Unload Me
-    frmApp.pictureBoxMain.Visible = True
+    'frmApp.pictureBoxMain.Visible = True
+    'frmVisionboard.cmdCargarVisionboard_Click
 End Sub
 
 Private Sub Form_Load()

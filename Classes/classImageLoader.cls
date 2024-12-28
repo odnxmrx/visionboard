@@ -25,7 +25,7 @@ Public Function CargarImagen(ByVal ruta As String, picMetaImage As PictureBox) A
 
     Exit Function
 ERR_HANDLER:
-    MsgBox "Ocurrió errorsito en CargarImagen Fn" & Err.Description, vbCritical, "Error"
+    MsgBox "Ocurrió errorsito en CargarImagen Fn" & Err.description, vbCritical, "Error"
     Resume Next
 End Function
 
