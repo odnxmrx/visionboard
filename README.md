@@ -46,7 +46,7 @@ Aldair's:
 Embrace continuous learning by dedicating time each week to mastering new skills or technologies.  
 
 **Reflection on 2024:**  
-This year taught me the importance of resilience and adaptability, reminding me that challenges often lead to unexpected growth.
+This year taught me the importance of resilience and adaptability, reminding me that challenges often lead to unexpected growth and not giving up so easily, starting from 0 is always scary but always brings something better.
 
 
 Armando's:
