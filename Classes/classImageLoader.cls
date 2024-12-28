@@ -17,6 +17,20 @@ Option Explicit
 Public Function CargarImagen(ByVal ruta As String, picMetaImage As PictureBox) As StdPicture
     On Error GoTo ERR_HANDLER ' Handle runtime errors gracefully
 
+    ' Load the picture
+    picMetaImage.Picture = LoadPicture(ruta)
+
+    ' Call the resizing logic
+    RedimensionarImagen picMetaImage
+
+    Exit Function
+ERR_HANDLER:
+    MsgBox "Ocurrió errorsito en CargarImagen Fn" & Err.Description, vbCritical, "Error"
+    Resume Next
+End Function
+
+' Subroutine para redimensionar la imagen dentro de un PictureBox
+Public Sub RedimensionarImagen(picMetaImage As PictureBox)
     Dim originalWidth As Single
     Dim originalHeight As Single
     Dim scaleX As Single
@@ -25,9 +39,6 @@ Public Function CargarImagen(ByVal ruta As String, picMetaImage As PictureBox) A
     Dim targetHeight As Single
     Dim xOffset As Single
     Dim yOffset As Single
-
-    ' Load the picture
-    picMetaImage.Picture = LoadPicture(ruta)
 
     ' Get the original image dimensions
     originalWidth = picMetaImage.Picture.Width / Screen.TwipsPerPixelX
@@ -53,10 +64,5 @@ Public Function CargarImagen(ByVal ruta As String, picMetaImage As PictureBox) A
     ' Clear the PictureBox and draw the resized image
     picMetaImage.Cls
     picMetaImage.PaintPicture picMetaImage.Picture, xOffset, yOffset, targetWidth, targetHeight
-    
-    Exit Function
-ERR_HANDLER:
-    MsgBox "Ocurrió errorsito en CargarImagen Fn" & Err.Description, vbCritical, "Error"
-    Resume Next
-    
-End Function
+End Sub
+

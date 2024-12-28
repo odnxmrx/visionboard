@@ -234,7 +234,7 @@ Private Sub cmdBtnImagen_Click()
 
     With commonDialogInsertarImagen ' Component MSCommon Dialog 6.0
         .DialogTitle = "Selecciona imagen representativa"
-        .Filter = "Archivos de imagen|*.jpg;*.png"
+        .Filter = "Archivos de imagen|*.jpg" '.Filter = "Archivos de imagen|*.jpg;*.png"
         '.Flags = cdlOFNAllowMultiselect ' permite seleccion multiple de archivos
         .ShowOpen
         rutaImagen = .FileName
@@ -271,6 +271,7 @@ End Sub
 
 Private Sub cmdBtnSalir_Click()
     Unload Me
+    frmApp.pictureBoxMain.Visible = True
 End Sub
 
 Private Sub Form_Load()

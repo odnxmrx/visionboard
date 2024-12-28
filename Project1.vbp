@@ -9,6 +9,7 @@ Form=Forms\frmApp.frm
 Form=Forms\frmDetalle.frm
 Class=classImageLoader; Classes\classImageLoader.cls
 Class=classDatabaseHandler; Classes\classDatabaseHandler.cls
+Form=Forms\frmVisionboard.frm
 Startup="frmApp"
 HelpFile=""
 Command32=""

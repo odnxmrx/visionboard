@@ -9,10 +9,28 @@ Begin VB.MDIForm frmApp
    ClientWidth     =   13845
    LinkTopic       =   "MDIForm1"
    StartUpPosition =   2  'CenterScreen
+   Begin VB.PictureBox pictureBoxMain 
+      Align           =   1  'Align Top
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
+      Height          =   8295
+      Left            =   0
+      Picture         =   "frmApp.frx":0000
+      ScaleHeight     =   8265
+      ScaleMode       =   0  'User
+      ScaleWidth      =   13815
+      TabIndex        =   0
+      Top             =   0
+      Width           =   13845
+   End
    Begin VB.Menu mArchivo 
       Caption         =   "Archivo"
       Begin VB.Menu smNuevo 
          Caption         =   "Crear Nuevo"
+      End
+      Begin VB.Menu mVerVisionboard 
+         Caption         =   "Ver Visionboard"
       End
       Begin VB.Menu mSalir 
          Caption         =   "Salir"
@@ -36,6 +54,11 @@ Private Sub mSalir_Click()
     Unload Me
 End Sub
 
+Private Sub mVerVisionboard_Click()
+    pictureBoxMain.Visible = False
+    frmVisionboard.Show
+End Sub
+
 Private Sub smAcercaDe_Click()
     MsgBox "Visionboard project" & vbCrLf & _
     "" & vbCrLf & _
@@ -48,6 +71,7 @@ Private Sub smAcercaDe_Click()
 End Sub
 
 Private Sub smNuevo_Click()
+    pictureBoxMain.Visible = False
     Set frmDetalle = New frmDetalle ' Nueva instancia de Detalle
     frmDetalle.Show
 End Sub
