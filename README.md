@@ -40,6 +40,17 @@ Or run the `.exe` file to execute the stand-alone project.
 
 ## New Year's Resolution
 
+Aldair's:
+
+**New Year's Resolution 2025:**  
+Embrace continuous learning by dedicating time each week to mastering new skills or technologies.  
+
+**Reflection on 2024:**  
+This year taught me the importance of resilience and adaptability, reminding me that challenges often lead to unexpected growth.
+
+
+Armando's:
+
 **New Year’s Resolution for 2025:**  
 Continue learning and growing professionally, focusing on mastering new technologies and strengthening personal projects.
 
