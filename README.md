@@ -1,5 +1,3 @@
-# visionboard
-
 # Visionboard Project
 
 A visionboard is an illustrated representation of your goals and aspirations, it is generally popular by year end so people can set new goals for the New Year.
@@ -14,7 +12,7 @@ Implementing `Visual Basic 6.0`
 
 Implementing `Microsoft SQL Server 2022`.
 
-### E-R Diagram
+Run the `.sql` file on root directory from this project.
 
 ### Feedback
 
@@ -22,3 +20,11 @@ Implementing `Microsoft SQL Server 2022`.
 | -------------------------- | --------------------------- | ---------------------------------- |
 | - Goals creation           | - User Interface            | - Reduce code                      |
 | - MS SQL Database Creation | - Time management           | - Add Functionalities (Users, etc) |
+
+## Developers
+
+Project creaded by
+
+Carlos Aldair Ortiz Mata
+
+Armando Pineda Gama

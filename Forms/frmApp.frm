@@ -65,9 +65,10 @@ Private Sub smAcercaDe_Click()
     "Developed on Visual Basic 6," & vbCrLf & _
     "Microsoft SQL Server" & vbCrLf & _
     "" & vbCrLf & _
-    "Desarrollado por " & vbCrLf & _
-    "© Armando Pineda Gama" & vbCrLf & _
-    "Diciembre, 2024.", vbOKOnly, "Acerca de"
+    "Desarrollado por:" & vbCrLf & _
+    "Carlos Aldair Ortiz Mata" & vbCrLf & _
+    "Armando Pineda Gama" & vbCrLf & _
+    "© Todos los derechos reservados. Diciembre, 2024.", vbOKOnly, "Acerca de"
 End Sub
 
 Private Sub smNuevo_Click()
